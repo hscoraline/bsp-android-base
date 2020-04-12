@@ -2,11 +2,11 @@
 
 This is Android base project for development (Includes a sample feature)
 
-#Usage
+##Usage
 
 Clone or download and open project with Android Studio
 
-#Note
+##Note
 
 -Actively use constraint layouts to limit nesting of too many layouts, affecting the smoothness of the UI
 
