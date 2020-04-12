@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    flavorDimensions "default"
+
+    defaultConfig {
+        applicationId "com.bsp.base"
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    productFlavors {
+        def BASE_URL = "BASE_URL"
+
+        //TODO change base url 
+
+        development {
+            applicationId "com.bsp.base.development"
+            buildConfigField "String", BASE_URL, "\"https://dummy.restapiexample.com/api/\""
+        }
+
+        staging {
+            applicationId "com.bsp.base.staging"
+            buildConfigField "String", BASE_URL, "\"https://api.staging.domain.com\""
+        }
+
+        production {
+            applicationId "com.bsp.base"
+            buildConfigField "String", BASE_URL, "\"https://api.staging.domain.com\""
+        }
+    }
+
+}
+
+dependencies {
+    def lifecycle_version = "2.2.0"
+    def rxjava_version = "2.2.18"
+    def rxandroid_version = "2.1.1"
+    def retrofit_version = "2.7.1"
+    def logginginterceptor_version = "4.4.0"
+    def gson_version = "2.8.6"
+    def glide_version = "4.11.0"
+    def nav_version = "2.2.1"
+    def constraintlayout_version = "1.1.3"
+    def room_version = "2.2.5"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //ConstraintLayout
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logginginterceptor_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //ViewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    //JodaTime
+    implementation 'joda-time:joda-time:2.10.5'
+
+    //SDP
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+
+}
