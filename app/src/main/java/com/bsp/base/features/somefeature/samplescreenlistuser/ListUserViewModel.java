@@ -47,12 +47,6 @@ public class ListUserViewModel extends BaseViewModel {
         mListUser.setValue(response.getData());
     }
 
-    @Override
-    protected void onCleared() {
-        DisposableManager.dispose();
-        super.onCleared();
-    }
-
     public LiveData<List<SampleUser>> usersData() {
         return mListUser;
     }

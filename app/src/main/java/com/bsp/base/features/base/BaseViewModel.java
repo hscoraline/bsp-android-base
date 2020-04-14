@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.bsp.base.util.DisposableManager;
+
 public abstract class BaseViewModel extends AndroidViewModel {
 
     private MutableLiveData<Boolean> loadingEvent = new MutableLiveData<>();
@@ -37,4 +39,9 @@ public abstract class BaseViewModel extends AndroidViewModel {
         return errorEvent;
     }
 
+    @Override
+    protected void onCleared() {
+        DisposableManager.dispose();
+        super.onCleared();
+    }
 }
